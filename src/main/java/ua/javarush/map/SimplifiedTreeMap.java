@@ -2,7 +2,7 @@ package ua.javarush.map;
 
 import java.util.Comparator;
 
-public class SimplifiedTreeMap<K, V> {
+public class SimplifiedTreeMap<K extends Comparable<K>, V> {
     private final Comparator<? super K> comparator;
     private Entry<K, V> root;
     private int size;
@@ -143,7 +143,7 @@ public class SimplifiedTreeMap<K, V> {
     }
 
     private int compare(K k1, K k2) {
-        return comparator == null ? ((Comparable<? super K>) k1).compareTo(k2)
+        return comparator == null ? (k1).compareTo(k2)
                 : comparator.compare(k1, k2);
     }
 
