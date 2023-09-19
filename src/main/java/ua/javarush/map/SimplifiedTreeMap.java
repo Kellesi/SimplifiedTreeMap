@@ -2,7 +2,7 @@ package ua.javarush.map;
 
 import java.util.Comparator;
 
-public class SimplifiedTreeMap<K extends Comparable<K>, V> {
+public class SimplifiedTreeMap<K extends Comparable<K>, V> implements SimplifiedMap<K, V> {
     private final Comparator<? super K> comparator;
     private Entry<K, V> root;
     private int size;
@@ -15,6 +15,7 @@ public class SimplifiedTreeMap<K extends Comparable<K>, V> {
         this.comparator = comparator;
     }
 
+    @Override
     public boolean add(K key, V value) {
         if (size == 0) {
             root = new Entry<>(key, value, null);
@@ -67,6 +68,7 @@ public class SimplifiedTreeMap<K extends Comparable<K>, V> {
         return null;
     }
 
+    @Override
     public boolean remove(K key) {
         Entry<K, V> forRemove = getEntry(key);
         if (forRemove == null) {
@@ -134,10 +136,12 @@ public class SimplifiedTreeMap<K extends Comparable<K>, V> {
         return true;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public boolean contains(K key) {
         return getEntry(key) != null;
     }
